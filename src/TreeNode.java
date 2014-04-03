@@ -101,10 +101,31 @@ public class TreeNode<T> {
 		else {
 			Set<String> permutationSetLesser = permutations(s.substring(1));
 			Set<String> permutationSet = new HashSet<String>();
-			for (String permutationLesser: permutationSetLesser) {
-				
-			}
-			
+			for (String permutationLesser: permutationSetLesser)
+				for (int offset = 0; offset <= permutationLesser.length(); offset++)
+					permutationSet.add(new StringBuilder(permutationLesser).insert(offset, s.charAt(0)).toString());
+			return permutationSet;
 		}
+	}
+	
+	private enum Player {
+		Alice, Bob;
+		
+		/** Return the opponent of this player. */
+		public Player opponent() {
+			return this == Alice ? Bob : Alice;
+		}
+		
+		/** Return the player as a String. */
+		public String toString() {
+			return this == Alice ? "Alice" : "Bob";
+		}
+	}
+	
+	/** Return the winner of the pick coin game and the number of strategies. */
+	public static int pickCoin(int NumOfCoins, Player first, Player second) {
+		assert NumOfCoins > 0;
+		
+		if (NumOfCoins == 1 || NumOfCoins == 2)
 	}
 }

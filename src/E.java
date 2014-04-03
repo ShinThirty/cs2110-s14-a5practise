@@ -23,7 +23,7 @@ public class E {
 		String fixedS = "";
 		int indexWS = 0;
 		String word = "";
-		while (s != "") {
+		while (s.equals("") == false) {
 			s = s.trim();
 			indexWS = s.indexOf(' ');
 			if (indexWS >= 0) {
@@ -48,7 +48,7 @@ public class E {
 		int indexSC = 0;
 		String[] name = {"", ""};
 		
-		while (s != "") {
+		while (s.equals("") == false) {
 			s = s.trim();
 			indexSC = s.indexOf(';');
 			if (indexSC >= 0) {

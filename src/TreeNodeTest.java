@@ -31,5 +31,33 @@ public class TreeNodeTest {
 			System.out.println();
 		}
 	}
+	
+	@Test
+	public void pickCoinTest() {
+		int[] numOfCoinsCases = {1, 2, 3, 10, 25, 30};
+		TreeNode.Player[][] PlayerCases = {{TreeNode.Player.Alice, TreeNode.Player.Bob}, 
+				                           {TreeNode.Player.Bob, TreeNode.Player.Alice}, 
+				                           {TreeNode.Player.Alice, TreeNode.Player.Bob}, 
+				                           {TreeNode.Player.Alice, TreeNode.Player.Bob}, 
+				                           {TreeNode.Player.Alice, TreeNode.Player.Bob}, 
+				                           {TreeNode.Player.Alice, TreeNode.Player.Bob}};
+		
+		TreeNode.Player[] expectedWinner = {TreeNode.Player.Alice, 
+				                            TreeNode.Player.Bob, 
+				                            TreeNode.Player.Bob, 
+				                            TreeNode.Player.Alice, 
+				                            TreeNode.Player.Alice, 
+				                            TreeNode.Player.Bob};
+		
+		int[] expectedNOS = {1, 1, 2, 22, 3344, 18272};
+		
+		TreeNode.PickCoinResult actualResult = null;
+		
+		for (int i = 0; i < numOfCoinsCases.length; i++) {
+			actualResult = TreeNode.pickCoin(numOfCoinsCases[i], PlayerCases[i][0], PlayerCases[i][1]);
+			assertEquals(expectedWinner[i], actualResult.getWinner());
+			assertEquals(expectedNOS[i], actualResult.getNOS());
+		}
+	}
 
 }

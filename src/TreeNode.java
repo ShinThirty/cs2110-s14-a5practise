@@ -108,7 +108,7 @@ public class TreeNode<T> {
 		}
 	}
 	
-	private enum Player {
+	public enum Player {
 		Alice, Bob;
 		
 		/** Return the opponent of this player. */
@@ -122,10 +122,51 @@ public class TreeNode<T> {
 		}
 	}
 	
+	public static class PickCoinResult {
+		private Player winner;
+		private int NumOfStrategies;
+		
+		/** Constructor. */
+		public PickCoinResult(Player win, int NOS) {
+			winner = win;
+			NumOfStrategies = NOS;
+		}
+		
+		/** Get the value of fields. */
+		public Player getWinner() {
+			return winner;
+		}
+		
+		public int getNOS() {
+			return NumOfStrategies;
+		}
+	}
+	
 	/** Return the winner of the pick coin game and the number of strategies. */
-	public static int pickCoin(int NumOfCoins, Player first, Player second) {
+	public static PickCoinResult pickCoin(int NumOfCoins, Player first, Player second) {
 		assert NumOfCoins > 0;
 		
 		if (NumOfCoins == 1 || NumOfCoins == 2)
+			return new PickCoinResult(first, 1);
+		else if (NumOfCoins == 3)
+			return new PickCoinResult(second, 2);
+		else if (NumOfCoins == 4)
+			return new PickCoinResult(first, 3);
+		else {
+			// NumOfCoins > 4
+			if (NumOfCoins % 3 == 0) {
+				int NumOfStrategies = pickCoin(NumOfCoins - 1, second, first).getNOS() + 
+									  pickCoin(NumOfCoins - 2, second, first).getNOS() + 
+									  pickCoin(NumOfCoins - 4, second, first).getNOS();
+				return new PickCoinResult(second, NumOfStrategies);
+			}
+			else {
+				int NumOfStrategies = ((NumOfCoins - 1) % 3 == 0) ? 
+					   (pickCoin(NumOfCoins - 1, second, first).getNOS() + 
+						pickCoin(NumOfCoins - 4, second, first).getNOS()) : 
+						pickCoin(NumOfCoins - 2, second, first).getNOS();
+				return new PickCoinResult(first, NumOfStrategies);
+			}
+		}
 	}
 }

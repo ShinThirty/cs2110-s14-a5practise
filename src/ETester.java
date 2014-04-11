@@ -6,14 +6,14 @@ import org.junit.Test;
 public class ETester {
 
 	@Test
-	public void numberTest() {
-		int numOfChar = E.number('a', "apple");
+	public void occurrencesTest() {
+		int numOfChar = E.occurrences('a', "apple");
 		assertEquals(1, numOfChar);
-		numOfChar = E.number('p', "applepie");
+		numOfChar = E.occurrences('p', "applepie");
 		assertEquals(3, numOfChar);
-		numOfChar = E.number('p', "ppppppp");
+		numOfChar = E.occurrences('p', "ppppppp");
 		assertEquals(7, numOfChar);
-		numOfChar = E.number('q', "ppppppp");
+		numOfChar = E.occurrences('q', "ppppppp");
 		assertEquals(0, numOfChar);
 	}
 	

@@ -5,6 +5,28 @@ import java.util.*;
 
 
 public class TreeNodeTest {
+	
+	@Test
+	public void sizeleavesTest() {
+		TreeNode tree1 = TreeNode.tree1();
+		assertEquals(6, tree1.size());
+		assertEquals(6, TreeNode.size(tree1));
+		assertEquals(3, tree1.getNumOfLeaves());
+		assertEquals(3, TreeNode.getNumOfLeaves(tree1));
+	}
+	
+	@Test
+	public void bPowercTest() {
+		double[] bArray = {2, 3, 3.5, 4};
+		int[] cArray = {2, 3, 4, 5};
+		double[] expected = {4, 27, 150.0625, 1024};
+		double actual;
+		
+		for (int i = 0; i < bArray.length; i++) {
+			actual = TreeNode.bPowerc(bArray[i], cArray[i]);
+			assert expected[i] == actual;
+		}
+	}
 
 	@Test
 	public void isXishTest() {

@@ -1,4 +1,5 @@
-
+// My answers to the asymptotic complexity and induction problems
+// all lies in a5proofs.pdf file.
 public class E {
 
     /** String-loop question 1 
